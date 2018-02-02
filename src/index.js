@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, browserHistory } from 'react-router';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 
 import App from './components/app';
 import Resources from './components/resources';
@@ -12,10 +15,11 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <Route path="resources" component={Resources} />
-      </Route>
+    <Router>
+      <div>
+        <Route path="/" component={App} />
+        <Route path="/resources" component={Resources} />
+      </div>
     </Router>
   </Provider>
   , document.querySelector('.container'));
