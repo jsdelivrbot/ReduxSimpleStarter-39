@@ -6,8 +6,9 @@ import chai, { expect } from 'chai';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducers from '../src/reducers';
 import chaiJquery from 'chai-jquery';
+import { MemoryRouter } from 'react-router-dom';
+import reducers from '../src/reducers';
 
 // Setting up testing environment to run like a browser in the command line
 global.window = new JSDOM('<!doctype html><html><body></body></html>').window;
@@ -18,7 +19,9 @@ const $ = jquery(global.window);
 function renderComponent(ComponentClass, props, state) {
   const componentInstance = TestUtils.renderIntoDocument(
     <Provider store={createStore(reducers, state)}>
-      <ComponentClass { ...props } />
+      <MemoryRouter>
+        <ComponentClass { ...props } />
+      </MemoryRouter>
     </Provider>
   );
 
