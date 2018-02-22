@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default () => {
+import requireAuth from './require_authentication';
+
+export default requireAuth(() => {
   return (
     <div>
       Super Special Recipe
@@ -11,4 +13,4 @@ export default () => {
       </ul>
     </div>
   )
-}
+})
